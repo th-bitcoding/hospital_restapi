@@ -3,6 +3,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status 
 from Disease.models import Disease
+from rest_framework import viewsets
+from customeusers.models import CustomeUser
+from django.shortcuts import get_object_or_404
+from customeusers.serializers import UserSerializers,DiseaseDoctorSerializer
 
 class DiseaseAPIview(APIView):
     def get_disease(self, pk):
@@ -30,3 +34,27 @@ class DiseaseAPIview(APIView):
             serializer.save()
             return Response(serializer.data,status=status.HTTP_200_OK)
         return Response(serializer.errors,status=status.HTTP_404_NOT_FOUND)
+    
+
+# class DiseaseDoctorShow(viewsets.ModelViewSet):
+#     queryset = Disease.objects.all()
+#     serializer_class = DiseaseSerializers
+
+#     def get_queryset(self):
+#         disease = self.kwargs['pk']
+#         doctors = CustomeUser.objects.filter(specialist__id=disease)
+#         usernames = [doctor.username for doctor in doctors]
+#         print('*'*10,usernames)
+#         response_data = {
+#             'doctors': usernames
+#         }
+        
+#         serializer = DiseaseDoctorSerializer(response_data,many=True)
+#         print('**********serializer',serializer)
+#         return Response(response_data)
+        
+
+class DiseaseDoctorShow(viewsets.ModelViewSet):
+    queryset = Disease.objects.all()
+    serializer_class = DiseaseDoctorSerializer
+
