@@ -28,6 +28,8 @@ urlpatterns = [
     path('disease/',include('Disease.urls')),
     path('api/',include('Disease.api.urls')),
     path('customeuser/',include('customeusers.urls')),
+    path('doctortimeslot/',include('doctortimeslot.urls')),
+    path('patient/',include('patient.urls')),
     path('gettoken/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('refreshtoken/', TokenRefreshView.as_view(), name='token_refresh'),
     path('verify/', TokenVerifyView.as_view(), name='token_verify'),

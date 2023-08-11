@@ -27,5 +27,8 @@ class CustomeUser(AbstractUser,MyModel):
     specialist = models.ManyToManyField(Disease)
     is_active = models.BooleanField(default=True)
 
+    def __str__(self):
+        return self.doctor_name if self.doctor_name else ''
+
     def specialist_function(self):
         return ", ".join([str(specialist) for specialist in self.specialist.all()])

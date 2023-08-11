@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'customeusers',
     'rest_framework_simplejwt',
+    'doctortimeslot',
+    'patient'
 ]
 
 MIDDLEWARE = [

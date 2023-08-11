@@ -37,9 +37,8 @@ class UserApiview(APIView):
         if serializer.is_valid():
             
             email = serializer.validated_data['email']
-            print('*'*5,email)
+            # is_active = serializer.validated_data.get('is_active', False)
             username = email.split('@')[0]
-            ('*'*5,username)
             password = username + ''.join([random.choice(string.digits) for i in range(0, 3)])
             print('*'*5,password)
             user = serializer.save(username=username, password=password,user_type=2)
